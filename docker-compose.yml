@@ -1,0 +1,80 @@
+# docker-compose.yml for connecting to EXISTING services
+version: '3.8'
+
+services:
+  leftplot-backend:
+    build: 
+      context: .
+      target: production
+    ports:
+      # Exposes your app on port 9294 of the server running Docker
+      - "9294:9294"
+    environment:
+      # This tells the app inside the container which port to listen on.
+      # The rest of your secrets (DB_HOST, etc.) will come from the .env.production file.
+      - NODE_ENV=production
+      - PORT=9294
+      - DB_HOST=postgres
+      - DB_USER=your-db-user
+      - DB_NAME=your-db-name
+      - DB_PORT=5432
+      - REDIS_URL=redis://RE:6379
+      - SMTP_HOST_FILE=/run/secrets/smtp_host
+      - SMTP_PORT_FILE=/run/secrets/smtp_port
+      - SMTP_SECURE_FILE=/run/secrets/smtp_secure
+      - SMTP_USER_FILE=/run/secrets/smtp_user
+      - SMTP_PASS_FILE=/run/secrets/smtp_pass
+      - SMTP_FROM_FILE=/run/secrets/smtp_from
+      - FRONTEND_URL_FILE=/run/secrets/frontend_url
+      - JWT_SECRET_FILE=/run/secrets/jwt_secret
+      - DB_PASSWORD_FILE=/run/secrets/db_password
+      - REDIS_PASSWORD_FILE=/run/secrets/redis_password
+    secrets:
+      - smtp_host
+      - smtp_port
+      - smtp_secure
+      - smtp_user
+      - smtp_pass
+      - smtp_from
+      - frontend_url
+      - jwt_secret
+      - db_password
+      - redis_password
+    restart: unless-stopped
+    depends_on:
+      - db-init
+
+  db-init:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=your-db-user
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db_password
+      - POSTGRES_DB=your-db-name
+    secrets:
+      - db_password
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    command: ["postgres", "-c", "max_connections=100"]
+    restart: "no"
+
+secrets:
+  smtp_host:
+    file: leftplot/secrets/smtp_host.txt
+  smtp_port:
+    file: leftplot/secrets/smtp_port.txt
+  smtp_secure:
+    file: leftplot/secrets/smtp_secure.txt
+  smtp_user:
+    file: leftplot/secrets/smtp_user.txt
+  smtp_pass:
+    file: leftplot/secrets/smtp_pass.txt
+  smtp_from:
+    file: leftplot/secrets/smtp_from.txt
+  frontend_url:
+    file: leftplot/secrets/frontend_url.txt
+  jwt_secret:
+    file: leftplot/secrets/jwt_secret.txt
+  db_password:
+    file: leftplot/secrets/db_password.txt
+  redis_password:
+    file: leftplot/secrets/redis_password.txt
