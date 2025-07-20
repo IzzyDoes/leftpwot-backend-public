@@ -577,7 +577,7 @@ router.get('/:identifier/share', async (req, res) => {
     }
     
     const post = result.rows[0];
-    const baseUrl = process.env.FRONTEND_URL || 'https://leftplot.site';
+    const baseUrl = process.env.FRONTEND_URL || 'https://yourdomain.com';
     const shareUrl = `${baseUrl}/post/${post.slug}`;
     
     res.json({

@@ -5,15 +5,24 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const { v4: uuidv4 } = require('uuid');
-const { getSecrets } = require('../secrets');
-
-const secrets = getSecrets();
+// Load environment variables for email configuration
+const secrets = {
+  NODE_ENV: process.env.NODE_ENV || 'development',
+  SMTP_HOST: process.env.SMTP_HOST,
+  SMTP_PORT: process.env.SMTP_PORT,
+  SMTP_SECURE: process.env.SMTP_SECURE,
+  SMTP_USER: process.env.SMTP_USER,
+  SMTP_PASS: process.env.SMTP_PASS,
+  SMTP_FROM: process.env.SMTP_FROM || 'noreply@yourdomain.com',
+  FRONTEND_URL: process.env.FRONTEND_URL || 'http://localhost:3000',
+  JWT_SECRET: process.env.JWT_SECRET || 'your-secret-key'
+};
 
 let transporter;
 if (secrets.NODE_ENV === 'test') {
   // Use a stub transport for tests to avoid network timeouts
   transporter = nodemailer.createTransport({ jsonTransport: true });
-} else {
+} else if (secrets.SMTP_HOST) {
   transporter = nodemailer.createTransport({
     host: secrets.SMTP_HOST,
     port: secrets.SMTP_PORT,
@@ -23,6 +32,9 @@ if (secrets.NODE_ENV === 'test') {
       pass: secrets.SMTP_PASS
     }
   });
+} else {
+  // No email configuration - skip email sending
+  transporter = null;
 }
 
 // Register a new user
@@ -90,7 +102,7 @@ router.post('/register', async (req, res) => {
         to: email,
         subject: 'Verify your email address',
         html: `
-          <h1>Welcome to Amebo!</h1>
+          <h1>Welcome to Our Platform!</h1>
           <p>Please click the link below to verify your email address:</p>
           <a href="${verificationUrl}">${verificationUrl}</a>
           <p>This link will expire in 24 hours.</p>
@@ -265,7 +277,7 @@ router.post('/resend-verification', async (req, res) => {
         to: email,
         subject: 'Verify your email address',
         html: `
-          <h1>Welcome to Amebo!</h1>
+          <h1>Welcome to Our Platform!</h1>
           <p>Please click the link below to verify your email address:</p>
           <a href="${verificationUrl}">${verificationUrl}</a>
           <p>This link will expire in 24 hours.</p>
@@ -362,7 +374,7 @@ router.post('/request-password-reset', async (req, res) => {
       await transporter.sendMail({
         from: secrets.SMTP_FROM,
         to: user.email,
-        subject: 'Your LeftPlot Password Reset Code',
+        subject: 'Your Password Reset Code',
         html: `<p>Your password reset code is:</p><h2>${code}</h2><p>This code expires in 15 minutes.</p>`
       });
     }

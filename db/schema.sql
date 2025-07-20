@@ -172,20 +172,16 @@ CREATE INDEX idx_poll_votes_poll_id ON poll_votes(poll_id);
 CREATE INDEX idx_poll_votes_user_id ON poll_votes(user_id);
 CREATE INDEX idx_poll_votes_option_id ON poll_votes(poll_option_id);
 
--- Insert an admin user (password: admin123)
+-- Insert sample admin user (password: admin123)
 INSERT INTO users (username, email, password, role, created_at, verified)
-VALUES ('admin', 'admin@leftplot.com', '$2b$10$rIC1S3DvGJqUfDYnLE6TL.C1x6HzDu/eBJsGF0K4CBSnGmzG4vKAS', 'admin', NOW(), true);
+VALUES ('admin', 'admin@example.com', '$2b$10$rIC1S3DvGJqUfDYnLE6TL.C1x6HzDu/eBJsGF0K4CBSnGmzG4vKAS', 'admin', NOW(), true);
 
--- Insert a second admin user (password: newadmin)
-INSERT INTO users (username, email, password, role, created_at, verified)
-VALUES ('admin2', 'admin2@leftplot.com', '$2b$10$Q8VQIeuWAlQrqm6qSEtcYeYNvoV/JZfPdeHhT0rm/o1EXlz7g8PGK', 'admin', NOW(), true);
-
--- Insert some regular users
+-- Insert sample regular users
 INSERT INTO users (username, email, password, role, created_at, verified)
 VALUES 
-  ('johndoe', 'john@example.com', '$2b$10$i2yh1tCEIia5XaRY6lMrDeYQ0.xHVfGYe4hVyXnV/vlZH5keGxO6S', 'user', NOW(), true),
-  ('janedoe', 'jane@example.com', '$2b$10$8UrhZaJ5WOgJoIx7dCpvUeCvvFkeI2etrSWt5pKyRrE7QFLe5xJ9y', 'user', NOW(), true),
-  ('political_pundit', 'pundit@example.com', '$2b$10$9Q.zF5pS1RCfEBQShZ2LK.TRJVrIHYQ/xBPQbvEjYUUt1UPr4xKbe', 'user', NOW(), true);
+  ('demo_user1', 'user1@example.com', '$2b$10$i2yh1tCEIia5XaRY6lMrDeYQ0.xHVfGYe4hVyXnV/vlZH5keGxO6S', 'user', NOW(), true),
+  ('demo_user2', 'user2@example.com', '$2b$10$8UrhZaJ5WOgJoIx7dCpvUeCvvFkeI2etrSWt5pKyRrE7QFLe5xJ9y', 'user', NOW(), true),
+  ('demo_user3', 'user3@example.com', '$2b$10$9Q.zF5pS1RCfEBQShZ2LK.TRJVrIHYQ/xBPQbvEjYUUt1UPr4xKbe', 'user', NOW(), true);
 
 -- Insert placeholder posts
 INSERT INTO posts (title, slug, content, user_id, created_at, upvotes, downvotes)
@@ -219,43 +215,44 @@ VALUES
 -- Insert sample polls
 INSERT INTO polls (post_id, question, description, is_active, allow_multiple_votes, expires_at)
 VALUES 
-  (1, 'Who do you think will win the 2027 presidential election?', 'Based on current political climate and voter sentiment', true, false, NOW() + INTERVAL '30 days'),
-  (2, 'What is the most pressing issue facing Nigeria today?', 'Select the issue that affects you most', true, true, NOW() + INTERVAL '60 days'),
-  (3, 'Do you support the current fuel subsidy removal policy?', 'Share your opinion on the economic policy', true, false, NOW() + INTERVAL '15 days');
+  (1, 'What is your favorite programming language?', 'Share your thoughts on different programming languages', true, false, NOW() + INTERVAL '30 days'),
+  (2, 'What features would you like to see in this platform?', 'Select the features that matter most to you', true, true, NOW() + INTERVAL '60 days'),
+  (3, 'How would you rate this application?', 'Share your opinion on the current features', true, false, NOW() + INTERVAL '15 days');
 
 -- Insert poll options
 INSERT INTO poll_options (poll_id, option_text)
 VALUES 
-  -- Poll 1: 2027 Election
-  (1, 'Peter Obi (Labour Party)'),
-  (1, 'Bola Tinubu (APC)'),
-  (1, 'Atiku Abubakar (PDP)'),
-  (1, 'Other/Undecided'),
+  -- Poll 1: Programming Languages
+  (1, 'JavaScript'),
+  (1, 'Python'),
+  (1, 'Java'),
+  (1, 'C++'),
+  (1, 'Other'),
   
-  -- Poll 2: Pressing Issues
-  (2, 'Security (Banditry/Kidnapping)'),
-  (2, 'Economy (Inflation/Fuel Prices)'),
-  (2, 'Education (ASUU Strikes)'),
-  (2, 'Healthcare (Poor Facilities)'),
-  (2, 'Corruption'),
-  (2, 'Youth Unemployment'),
+  -- Poll 2: Platform Features
+  (2, 'Better UI/UX'),
+  (2, 'Mobile App'),
+  (2, 'Real-time Notifications'),
+  (2, 'Advanced Search'),
+  (2, 'Dark Mode'),
+  (2, 'API Access'),
   
-  -- Poll 3: Fuel Subsidy
-  (3, 'Strongly Support'),
-  (3, 'Somewhat Support'),
-  (3, 'Neutral'),
-  (3, 'Somewhat Oppose'),
-  (3, 'Strongly Oppose');
+  -- Poll 3: Rating
+  (3, 'Excellent'),
+  (3, 'Good'),
+  (3, 'Average'),
+  (3, 'Below Average'),
+  (3, 'Poor');
 
 -- Insert sample poll votes
 INSERT INTO poll_votes (poll_id, poll_option_id, user_id)
 VALUES 
-  (1, 1, 2), -- User 2 votes for Peter Obi
-  (1, 2, 3), -- User 3 votes for Tinubu
-  (1, 3, 4), -- User 4 votes for Atiku
-  (2, 1, 2), -- User 2 votes for Security
-  (2, 2, 3), -- User 3 votes for Economy
-  (2, 3, 4), -- User 4 votes for Education
-  (3, 4, 2), -- User 2 somewhat opposes
-  (3, 5, 3), -- User 3 strongly opposes
-  (3, 1, 4); -- User 4 strongly supports
+  (1, 1, 2), -- User 2 votes for JavaScript
+  (1, 2, 3), -- User 3 votes for Python
+  (1, 3, 4), -- User 4 votes for Java
+  (2, 1, 2), -- User 2 votes for Better UI/UX
+  (2, 2, 3), -- User 3 votes for Mobile App
+  (2, 3, 4), -- User 4 votes for Real-time Notifications
+  (3, 4, 2), -- User 2 rates as Below Average
+  (3, 5, 3), -- User 3 rates as Poor
+  (3, 1, 4); -- User 4 rates as Excellent

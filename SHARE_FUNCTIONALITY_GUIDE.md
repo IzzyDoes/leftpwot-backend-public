@@ -426,7 +426,7 @@ const PostMeta: React.FC<PostMetaProps> = ({ post }) => {
 
   return (
     <Helmet>
-      <title>{post.title} - LeftPlot</title>
+      <title>{post.title} - Discussion Platform</title>
       <meta name="description" content={description} />
       
       {/* Open Graph */}
@@ -452,28 +452,28 @@ export default PostMeta;
 ## Usage Examples
 
 ### 1. Share URLs
-- **Before**: `https://leftplot.site/post/123`
-- **After**: `https://leftplot.site/post/fuel-subsidy-removal-na-who-dey-suffer-pass`
+- **Before**: `https://yourdomain.com/post/123`
+- **After**: `https://yourdomain.com/post/modern-web-frameworks-comparison`
 
 ### 2. Social Media Sharing
 ```javascript
 // Twitter
-const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out this post on LeftPlot: "Fuel subsidy removal: Na who dey suffer pass?"')}&url=${encodeURIComponent('https://leftplot.site/post/fuel-subsidy-removal-na-who-dey-suffer-pass')}`;
+const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out this post on LeftPlot: "Fuel subsidy removal: Na who dey suffer pass?"')}&url=${encodeURIComponent('https://yourdomain.com/post/modern-web-frameworks-comparison')}`;
 
 // WhatsApp
-const whatsappUrl = `https://wa.me/?text=${encodeURIComponent('Check out this post on LeftPlot: "Fuel subsidy removal: Na who dey suffer pass?" https://leftplot.site/post/fuel-subsidy-removal-na-who-dey-suffer-pass')}`;
+const whatsappUrl = `https://wa.me/?text=${encodeURIComponent('Check out this post: "Modern Web Frameworks Comparison" https://yourdomain.com/post/modern-web-frameworks-comparison')}`;
 ```
 
 ### 3. Copy to Clipboard
 ```javascript
 const copyShareUrl = async () => {
   try {
-    await navigator.clipboard.writeText('https://leftplot.site/post/fuel-subsidy-removal-na-who-dey-suffer-pass');
+    await navigator.clipboard.writeText('https://yourdomain.com/post/modern-web-frameworks-comparison');
     // Show success message
   } catch (error) {
     // Fallback for older browsers
     const textArea = document.createElement('textarea');
-    textArea.value = 'https://leftplot.site/post/fuel-subsidy-removal-na-who-dey-suffer-pass';
+    textArea.value = 'https://yourdomain.com/post/modern-web-frameworks-comparison';
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand('copy');
@@ -500,4 +500,4 @@ const copyShareUrl = async () => {
 5. **Copy Function**: Test clipboard functionality
 6. **SEO**: Verify meta tags and Open Graph data
 
-This implementation provides a complete sharing solution with URL-friendly slugs that work perfectly for Nigerian political content! 
+This implementation provides a complete sharing solution with URL-friendly slugs that work perfectly for modern web development content! 

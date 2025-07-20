@@ -229,7 +229,7 @@ PORT=3000
 NODE_ENV=production
 
 # Frontend URL
-FRONTEND_URL=https://leftplot.site
+FRONTEND_URL=https://yourdomain.com
 ```
 
 ### Production Checklist
@@ -262,8 +262,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, email support@leftplot.site or create an issue in this repository.
+For support, create an issue in this repository.
 
 ---
 
-**Built with ❤️ for Nigerian political discourse** 
+**Built with ❤️ for modern web development** 

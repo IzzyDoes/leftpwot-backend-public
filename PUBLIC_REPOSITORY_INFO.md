@@ -144,11 +144,11 @@ docker-compose up --build
 - **Scalable Design** - Containerized, cloud-ready
 - **Well Tested** - Comprehensive test coverage
 
-### Nigerian Focus
-- **Local Content** - Nigerian political discourse
-- **Pidgin English Support** - Local language handling
-- **Cultural Relevance** - 2027 election topics
-- **Community Driven** - User-generated content
+### Technology Focus
+- **Modern Development** - Full-stack web development
+- **Best Practices** - Industry-standard patterns
+- **Scalable Architecture** - Production-ready design
+- **Community Driven** - Open-source collaboration
 
 ## 🤝 Contributing
 
@@ -170,4 +170,4 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ---
 
-**This is a professional, production-ready application designed for the Nigerian political discourse community. Built with modern technologies and best practices.** 
+**This is a professional, production-ready application designed for modern web development. Built with modern technologies and best practices.** 

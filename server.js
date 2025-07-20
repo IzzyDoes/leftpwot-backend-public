@@ -1,22 +1,19 @@
-const { getSecrets } = require('./secrets');
-const secrets = getSecrets();
+require('dotenv').config();
 
-/* ── ADD THIS BLOCK (build Redis URL from secret if missing) ───────────────── */
-if (!secrets.REDIS_URL) {
-  const pass = secrets.REDIS_PASSWORD;         // read from /run/secrets/redis_password
-  const host = 'redis_enterprise';             // service name in docker-compose
-  const port = 12001;                          // exposed Redis port
-  if (pass) {
-    secrets.REDIS_URL = `redis://default:${pass}@${host}:${port}`;
-  }
-}
-/* ───────────────────────────────────────────────────────────────────────────── */
-
-if (secrets.NODE_ENV === 'test') {
-  require('dotenv').config({ path: '.env.test' });
-} else {
-  require('dotenv').config();
-}
+// Load environment variables
+const secrets = {
+  NODE_ENV: process.env.NODE_ENV || 'development',
+  PORT: process.env.PORT || 3000,
+  DB_HOST: process.env.DB_HOST || 'localhost',
+  DB_USER: process.env.DB_USER || 'postgres',
+  DB_NAME: process.env.DB_NAME || 'leftplot_db',
+  DB_PASSWORD: process.env.DB_PASSWORD || 'password',
+  DB_PORT: process.env.DB_PORT || 5432,
+  REDIS_URL: process.env.REDIS_URL,
+  REDIS_PASSWORD: process.env.REDIS_PASSWORD,
+  JWT_SECRET: process.env.JWT_SECRET || 'your-secret-key',
+  JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d'
+};
 
 const express = require('express');
 const cors = require('cors');

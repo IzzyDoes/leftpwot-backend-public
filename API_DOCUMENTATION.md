@@ -1,4 +1,4 @@
-# Amebo API Documentation
+# Modern Discussion Platform API Documentation
 
 ## Base URL
 ```
