@@ -2,7 +2,7 @@
 
 A modern, full-stack web application for Nigerian political discussions and debates. Built with Node.js, Express, PostgreSQL, and Redis.
 
-## 🌟 Features
+##  Features
 
 ### Core Functionality
 - **User Authentication & Authorization** - JWT-based auth with role-based access
@@ -22,7 +22,7 @@ A modern, full-stack web application for Nigerian political discussions and deba
 - **Containerization** - Docker and Docker Compose for easy deployment
 - **Testing** - Comprehensive test suite
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 ├── Backend (Node.js/Express)
@@ -43,7 +43,7 @@ A modern, full-stack web application for Nigerian political discussions and deba
     └── Production Setup
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Node.js 18+
@@ -102,7 +102,7 @@ docker-compose up postgres redis
 npm start
 ```
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 leftplot-backend/
@@ -128,7 +128,7 @@ leftplot-backend/
 └── Dockerfile
 ```
 
-## 🔧 API Endpoints
+##  API Endpoints
 
 ### Authentication
 - `POST /api/auth/register` - User registration
@@ -167,7 +167,7 @@ leftplot-backend/
 - `PATCH /api/admin/users/:id/block` - Admin: Block user
 - `PATCH /api/admin/posts/:id/block` - Admin: Block post
 
-## 🗄️ Database Schema
+##  Database Schema
 
 ### Core Tables
 - **users** - User accounts and authentication
@@ -181,7 +181,7 @@ leftplot-backend/
 - **reports** - Content moderation
 - **page_views** - Analytics tracking
 
-## 🔒 Security Features
+##  Security Features
 
 - **JWT Authentication** - Secure token-based auth
 - **Password Hashing** - bcrypt for password security
@@ -191,7 +191,7 @@ leftplot-backend/
 - **CORS Configuration** - Cross-origin request handling
 - **Helmet.js** - Security headers
 
-## 🧪 Testing
+##  Testing
 
 ```bash
 # Run all tests
@@ -203,7 +203,7 @@ npm test -- posts.test.js
 npm test -- comments.test.js
 ```
 
-## 📊 Performance Features
+##  Performance Features
 
 - **Redis Caching** - API response caching
 - **Database Indexing** - Optimized queries
@@ -211,7 +211,7 @@ npm test -- comments.test.js
 - **Compression** - Gzip response compression
 - **Pagination** - Efficient data loading
 
-## 🚀 Deployment
+##  Deployment
 
 ### Environment Variables
 ```env
@@ -241,7 +241,7 @@ FRONTEND_URL=https://yourdomain.com
 - [ ] Configure backups
 - [ ] Set up CI/CD pipeline
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -260,10 +260,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Designed for scalability and performance
 - Community-driven development
 
-## 📞 Support
+## Support
 
 For support, create an issue in this repository.
-
----
-
-**Built with ❤️ for modern web development** 
