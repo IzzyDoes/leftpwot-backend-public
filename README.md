@@ -1,4 +1,4 @@
-# LeftPlot - Nigerian Political Discourse Platform
+# LeftPlot - Nigerian Political Discourse Platform (THIS IS A STRIPPED VERSION OF PRODUCTION CODE)
 
 A modern, full-stack web application for Nigerian political discussions and debates. Built with Node.js, Express, PostgreSQL, and Redis.
 
